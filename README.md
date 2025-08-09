@@ -1,1 +1,5 @@
-# financial-statements
+# Financial Statements
+
+![Splash](resources/images/splash.jpg)
+
+## Introduction
