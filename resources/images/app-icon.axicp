@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AxialisIconCollection>
+  <Name>app-icon</Name>
+  <Icon>
+    <Name>app-icon</Name>
+    <HasBackground>0</HasBackground>
+    <StockIconName>report.axvi</StockIconName>
+    <StockIconFamily>Axialis Flat Design</StockIconFamily>
+    <StockIconSet>Business</StockIconSet>
+    <StockOverlayName>world.axvi</StockOverlayName>
+    <ResourceIDValue>101</ResourceIDValue>
+    <ResourceID>ID_APP_ICON</ResourceID>
+    <OverlayOffset>1</OverlayOffset>
+    <Opacity>255</Opacity>
+    <ColorizeMode>1</ColorizeMode>
+    <Colorize>#0000FF</Colorize>
+    <StockOverlayPos>1</StockOverlayPos>
+    <DarkMode>0</DarkMode>
+  </Icon>
+</AxialisIconCollection>

@@ -1,0 +1,52 @@
+﻿;╔═════════════════════════════════════════════════════════════════════════════════════════════════
+;║     consts.pbi                                                                           
+;╠═════════════════════════════════════════════════════════════════════════════════════════════════
+;║     Created: 09-08-2025 
+;║
+;║     Copyright (c) 2025 James Dooley <james@dooley.ch>
+;║
+;║     History:
+;║     07-09-2025: Initial version
+;╚═════════════════════════════════════════════════════════════════════════════════════════════════
+
+DeclareModule Consts
+  
+  ;-------- Application --------
+  #APP_TITLE$ = "Financial Statements Loader"
+  #APP_VERSION$ = "1.0.1"
+  #APP_LOG_FILE$ = "app.log"
+  #APP_CFG_FILE$ = "app.ini"
+  #APP_ORGANISATION$ = "dooley.ch"
+  #APP_DATA_FOLDER$ = "financial-statements-loader"
+  
+  ;-------- Main Window --------
+  #WND_MAIN_cfg_name = "main-window"
+  #WND_MAIN_default_X = 50
+  #WND_MAIN_default_Y = 50
+  #WND_MAIN_min_width = 900
+  #WND_MAIN_min_height = 600
+  #WND_MAIN_max_width = 1200
+  #WND_MAIN_max_height = 800
+  
+  ;-------- Exit Codes --------
+  #EXIT_SUCCESS                  = 0
+  #EXIT_GENERAL_ERROR            = 1
+  #EXIT_LOGGING_FAILED           = 126
+  #EXIT_COMMAND_WND_NOT_CREATED  = 127
+  #EXIT_FATAL_ERROR              = 128
+  
+  ;-------- Application Events --------
+  Enumeration #PB_Event_FirstCustomValue + 5000
+    #APP_EVENT_Quit
+  EndEnumeration
+EndDeclareModule
+
+Module Consts
+EndModule
+; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
+; ExecutableFormat = Console
+; CursorPosition = 33
+; FirstLine = 1
+; Folding = -
+; EnableXP
+; DPIAware
