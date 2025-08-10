@@ -18,7 +18,7 @@ DeclareModule Consts
   #APP_CFG_FILE$ = "app.ini"
   #APP_ORGANISATION$ = "dooley.ch"
   #APP_DATA_FOLDER$ = "financial-statements-loader"
-  
+    
   ;-------- Main Window --------
   #WND_MAIN_cfg_name = "main-window"
   #WND_MAIN_default_X = 50
@@ -27,6 +27,8 @@ DeclareModule Consts
   #WND_MAIN_min_height = 600
   #WND_MAIN_max_width = 1200
   #WND_MAIN_max_height = 800
+  
+  #WND_MAIN_NavPanel_Width = 200
   
   ;-------- Exit Codes --------
   #EXIT_SUCCESS                  = 0
@@ -39,14 +41,20 @@ DeclareModule Consts
   Enumeration #PB_Event_FirstCustomValue + 5000
     #APP_EVENT_Quit
   EndEnumeration
+  
+  ;-------- Gadget Colors --------
+  Define.l NAV_PANEL_Background = RGB($9E, $9E, $9E)
+  Define.l NAV_PANEL_Item_Background = RGB($75, $75, $75)
+  Define.l NAV_PANEL_Item_Selected_Background = RGB($42, $A5, $F5)
+  Define.l NAV_PANEL_Item_Selected_Text = RGB($FF, $FF, $FF)
 EndDeclareModule
 
 Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 33
-; FirstLine = 1
+; CursorPosition = 30
+; FirstLine = 8
 ; Folding = -
 ; EnableXP
 ; DPIAware
