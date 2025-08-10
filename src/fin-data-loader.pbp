@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 6.21 - C Backend (MacOS X - arm64)">
+  <section name="config">
+    <options closefiles="1" openmode="0" name="Financial Data Loader"/>
+  </section>
+  <section name="data">
+    <explorer view="" pattern="0"/>
+    <log show="1"/>
+    <lastopen date="2025-08-10 10:47" user="jdooley" host="Jamess-iMac.local"/>
+  </section>
+  <section name="files">
+    <file name="consts.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="aaa32ef015b3ee7fde3070c9d043d241"/>
+    </file>
+    <file name="file_utils.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="ed15479872cb9e3cfd7950addce1f2d1"/>
+    </file>
+    <file name="logger.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="aa4da6ceda90c664ff0e2e33c80edbbb"/>
+    </file>
+    <file name="main.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="1" panelstate=""/>
+      <fingerprint md5="eafaefaa8e799a8aa3182418c7d7d26e"/>
+    </file>
+    <file name="menubar.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="c50d49a3c3e77759ffb411373f85c32b"/>
+    </file>
+    <file name="setup.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="cce759f2194b8113159e44df2ee2cdf4"/>
+    </file>
+    <file name="statusbar.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="fa2a2b561219fa60a489e13a707af4e9"/>
+    </file>
+    <file name="string_utils.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="d39aaa980d8b52edcb923d3a73cf5275"/>
+    </file>
+    <file name="toolbar.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="5aa71b65d682aeb332144e26f8ccbe85"/>
+    </file>
+  </section>
+  <section name="targets">
+    <target name="Default Target" enabled="1" default="1">
+      <inputfile value="main.pb"/>
+      <outputfile value="../../bin/fin-dat-loader.app"/>
+      <executable value="../../bin/fin-dat-loader.app"/>
+      <options xpskin="1" dpiaware="1" debug="1" optimizer="0"/>
+      <icon enable="1">res/app-icon/icns/app-icon.icns</icon>
+      <format exe="console" cpu="0"/>
+    </target>
+  </section>
+</project>

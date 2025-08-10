@@ -91,7 +91,6 @@ LogEnd()
 End #EXIT_SUCCESS
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 26
-; FirstLine = 16
+; CursorPosition = 42
 ; EnableXP
 ; DPIAware
