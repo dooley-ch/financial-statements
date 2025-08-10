@@ -18,9 +18,48 @@ EndDeclareModule
 
 Module MenuBarModule
   EnableExplicit
-
+  
+  UseModule Consts
+  
+  UsePNGImageDecoder()
+  
+  Enumeration MenuItems 
+    #File_Quit
+    #Action_Download
+    #Action_Preferences
+    #Help_Manual
+    #Help_About
+  EndEnumeration
+  
   Define lastError$ = ""
   Define.i mainWindowId, menuBarId
+  
+  ;-------------------- Menu Event Handlers --------------------
+  
+  Procedure OnQuitClicked()
+    Shared mainWindowId
+    PostEvent(#APP_EVENT_Quit, mainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnDownloadClicked()
+    Shared mainWindowId
+    PostEvent(#APP_EVENT_Download, mainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnSettingsClicked()
+    Shared mainWindowId
+    PostEvent(#APP_EVENT_Setup, mainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnManualClicked()
+    Shared mainWindowId
+    PostEvent(#APP_EVENT_Manual, mainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnAboutClicked()
+    Shared mainWindowId
+    PostEvent(#APP_EVENT_About, mainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
   
   ;┌───────────────────────────────────────────────────────────────────────────────────────────────
   ;│     Public     
@@ -41,26 +80,83 @@ Module MenuBarModule
   ;
   Procedure.i CreateAppMenuBar(wndId.i)
     Shared mainWindowId, menuBarId, lastError$
-    
+    Protected.i hFileQuitIcon, hActionDownloadIcon, hActionSettingsIcon, hHelpManualIcon, hHelpAboutIcon
+
     lastError$ = #Empty$
     
     If IsWindow(wndId)
       mainWindowId = wndId
       
-      menuBarId = CreateMenu(#PB_Any, WindowID(mainWindowId))
+      hFileQuitIcon = CatchImage(#PB_Any, ?FileQuitIcon)
+      hActionDownloadIcon = CatchImage(#PB_Any, ?ActionDownloadIcon)
+      hActionSettingsIcon = CatchImage(#PB_Any, ?ActionSettingsIcon)
+      hHelpManualIcon = CatchImage(#PB_Any, ?HelpManualIcon)
+      hHelpAboutIcon = CatchImage(#PB_Any, ?HelpAboutIcon)
       
-      ProcedureReturn menuBarId
+      menuBarId = CreateImageMenu(#PB_Any, WindowID(mainWindowId))
+      
+      If IsMenu(menuBarId)
+        MenuTitle("&File")
+          MenuBar()
+          MenuItem(#File_Quit, "&Quit"  + Chr(9) + "Cmd+Q", ImageID(hFileQuitIcon))
+          
+        MenuTitle("Action")
+          MenuItem(#Action_Download, "&Download SimFin Files", ImageID(hActionDownloadIcon))
+          MenuBar()
+          MenuItem(#Action_Preferences, "&Settings", ImageID(hActionSettingsIcon))
+          
+        MenuTitle("&Help")
+           MenuItem(#Help_Manual, "&Manual", ImageID(hHelpManualIcon))
+          MenuBar()
+          MenuItem(#Help_About, "&About", ImageID(hHelpAboutIcon))
+          
+        ; Activate the Mac application menu options  
+        CompilerIf #PB_Compiler_OS = #PB_OS_MacOS
+          MenuItem(#PB_Menu_Quit, "")
+          MenuItem(#PB_Menu_About, "")
+          MenuItem(#PB_Menu_Preferences, "")
+          
+          BindMenuEvent(menuBarId, #PB_Menu_About, @OnAboutClicked())
+          BindMenuEvent(menuBarId, #PB_Menu_Preferences, @OnSettingsClicked())
+          BindMenuEvent(menuBarId, #PB_Menu_Quit, @OnQuitClicked())
+        CompilerEndIf
+        
+        BindMenuEvent(menuBarId, #File_Quit, @OnQuitClicked())
+        
+        BindMenuEvent(menuBarId, #Action_Download, @OnDownloadClicked()) 
+        BindMenuEvent(menuBarId, #Action_Preferences, @OnSettingsClicked()) 
+        
+        BindMenuEvent(menuBarId, #Help_Manual, @OnManualClicked())        
+        BindMenuEvent(menuBarId, #Help_About, @OnAboutClicked())
+        ProcedureReturn menuBarId
+      EndIf
     EndIf
     
     lastError$ = "Invalid window ID passed to CreateAppMenuBar function"
     ProcedureReturn 0
   EndProcedure
   
+  DataSection
+    FileQuitIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/exit@16px.png"
+    
+    ActionDownloadIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/download@16px.png"
+    
+    ActionSettingsIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/settings@16px.png"
+    
+    HelpManualIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/manual@16px.png"
+    
+    HelpAboutIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/about@16px.png"    
+  EndDataSection
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 51
-; FirstLine = 14
-; Folding = -
+; CursorPosition = 153
+; FirstLine = 118
+; Folding = --
 ; EnableXP
 ; DPIAware

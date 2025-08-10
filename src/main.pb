@@ -102,6 +102,14 @@ If IsWindow(mainWindowId)
     event = WaitWindowEvent()
     
     Select event
+      Case #APP_EVENT_Download
+        Debug "Download Action"
+      Case #APP_EVENT_Setup
+        Debug "Setup Action"
+      Case #APP_EVENT_Manual
+        Debug "Manual Action"
+      Case #APP_EVENT_About
+        Debug "About Action"
       Case #PB_Event_SizeWindow
         OnResizeMainWindow()
       Case #PB_Event_CloseWindow, #APP_EVENT_Quit
@@ -133,8 +141,8 @@ LogEnd()
 End #EXIT_SUCCESS
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 62
-; FirstLine = 36
+; CursorPosition = 111
+; FirstLine = 72
 ; Folding = -
 ; EnableXP
 ; DPIAware

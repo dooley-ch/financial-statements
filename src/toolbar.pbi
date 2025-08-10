@@ -18,7 +18,17 @@ EndDeclareModule
 
 Module ToolBarModule
   EnableExplicit
-
+  
+  UsePNGImageEncoder()
+  
+  Enumeration ToolbarButtonItems 
+    #File_Quit
+    #Action_Download
+    #Action_Preferences
+    #Help_Manual
+    #Help_About
+  EndEnumeration
+  
   Define lastError$ = ""
   Define.i mainWindowId, toolBarId
   
@@ -41,14 +51,26 @@ Module ToolBarModule
   ;
   Procedure.i CreateAppToolBar(wndId.i)
     Shared mainWindowId, toolBarId, lastError$
+    Protected hQuitButtonIcon, hDownloadButtonIcon, hSettingsButtonIcon, hManualButtonIcon
     
     lastError$ = #Empty$
     
     If IsWindow(wndId)
       mainWindowId = wndId
       
-      toolBarId = CreateToolBar(#PB_Any, WindowID(mainWindowId))
+      hQuitButtonIcon = CatchImage(#PB_Any, ?FileQuitIcon)
+      hDownloadButtonIcon = CatchImage(#PB_Any, ?ActionDownloadIcon)
+      hSettingsButtonIcon = CatchImage(#PB_Any, ?ActionSettingsIcon)
+      hManualButtonIcon = CatchImage(#PB_Any, ?HelpManualIcon)
       
+      toolBarId = CreateToolBar(#PB_Any, WindowID(mainWindowId), #PB_ToolBar_Large | #PB_ToolBar_Text)
+      ToolBarImageButton(#File_Quit, ImageID(hQuitButtonIcon), #PB_ToolBar_Normal, "Quit") 
+      ToolBarSeparator()
+      ToolBarImageButton(#Action_Download, ImageID(hDownloadButtonIcon), #PB_ToolBar_Normal, "Download")
+      ToolBarSeparator()
+      ToolBarImageButton(#Action_Preferences, ImageID(hSettingsButtonIcon), #PB_ToolBar_Normal, "Settings")
+      ToolBarSeparator()
+      ToolBarImageButton(#Help_Manual, ImageID(hManualButtonIcon), #PB_ToolBar_Normal, "Manual")      
       ProcedureReturn toolBarId
     EndIf
     
@@ -56,11 +78,27 @@ Module ToolBarModule
     ProcedureReturn 0
   EndProcedure
   
+  DataSection
+    FileQuitIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/exit@24px.png"
+    
+    ActionDownloadIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/download@24px.png"
+    
+    ActionSettingsIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/settings@24px.png"
+    
+    HelpManualIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/manual@24px.png"
+    
+    HelpAboutIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/about@24px.png"    
+  EndDataSection  
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 28
-; FirstLine = 16
+; CursorPosition = 84
+; FirstLine = 60
 ; Folding = -
 ; EnableXP
 ; DPIAware

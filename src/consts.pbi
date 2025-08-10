@@ -12,7 +12,7 @@
 DeclareModule Consts
   
   ;-------- Application --------
-  #APP_TITLE$ = "Financial Statements Loader"
+  #APP_TITLE$ = "Financial Data Loader"
   #APP_VERSION$ = "1.0.1"
   #APP_LOG_FILE$ = "app.log"
   #APP_CFG_FILE$ = "app.ini"
@@ -40,6 +40,10 @@ DeclareModule Consts
   ;-------- Application Events --------
   Enumeration #PB_Event_FirstCustomValue + 5000
     #APP_EVENT_Quit
+    #APP_EVENT_Download
+    #APP_EVENT_Setup
+    #APP_EVENT_Manual
+    #APP_EVENT_About
   EndEnumeration
   
   ;-------- Gadget Colors --------
@@ -53,8 +57,8 @@ Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 30
-; FirstLine = 8
+; CursorPosition = 42
+; FirstLine = 11
 ; Folding = -
 ; EnableXP
 ; DPIAware
