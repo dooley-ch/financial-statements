@@ -23,42 +23,49 @@ Module MenuBarModule
   
   UsePNGImageDecoder()
   
-  Enumeration MenuItems 
-    #File_Quit
-    #Action_Download
-    #Action_Preferences
-    #Help_Manual
-    #Help_About
-  EndEnumeration
-  
   Define lastError$ = ""
-  Define.i mainWindowId, menuBarId
+  Define.i hMainWindowId, hMenuBarId
   
   ;-------------------- Menu Event Handlers --------------------
   
   Procedure OnQuitClicked()
-    Shared mainWindowId
-    PostEvent(#APP_EVENT_Quit, mainWindowId, #PB_Ignore, #PB_Ignore)
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Quit, hMainWindowId, #PB_Ignore, #PB_Ignore)
   EndProcedure
   
   Procedure OnDownloadClicked()
-    Shared mainWindowId
-    PostEvent(#APP_EVENT_Download, mainWindowId, #PB_Ignore, #PB_Ignore)
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Download, hMainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnImportClicked()
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Import, hMainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnBuildClicked()
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Build, hMainWindowId, #PB_Ignore, #PB_Ignore)
+  EndProcedure
+  
+  Procedure OnPublishClicked()
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Publish, hMainWindowId, #PB_Ignore, #PB_Ignore)
   EndProcedure
   
   Procedure OnSettingsClicked()
-    Shared mainWindowId
-    PostEvent(#APP_EVENT_Setup, mainWindowId, #PB_Ignore, #PB_Ignore)
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Setup, hMainWindowId, #PB_Ignore, #PB_Ignore)
   EndProcedure
   
   Procedure OnManualClicked()
-    Shared mainWindowId
-    PostEvent(#APP_EVENT_Manual, mainWindowId, #PB_Ignore, #PB_Ignore)
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_Manual, hMainWindowId, #PB_Ignore, #PB_Ignore)
   EndProcedure
   
   Procedure OnAboutClicked()
-    Shared mainWindowId
-    PostEvent(#APP_EVENT_About, mainWindowId, #PB_Ignore, #PB_Ignore)
+    Shared hMainWindowId
+    PostEvent(#APP_EVENT_About, hMainWindowId, #PB_Ignore, #PB_Ignore)
   EndProcedure
   
   ;┌───────────────────────────────────────────────────────────────────────────────────────────────
@@ -78,37 +85,52 @@ Module MenuBarModule
   ;
   ; Returns: The id of the new menubar
   ;
-  Procedure.i CreateAppMenuBar(wndId.i)
-    Shared mainWindowId, menuBarId, lastError$
-    Protected.i hFileQuitIcon, hActionDownloadIcon, hActionSettingsIcon, hHelpManualIcon, hHelpAboutIcon
+  Procedure.i CreateAppMenuBar(hWindow.i)
+    Shared hMainWindowId, hMenuBarId, lastError$
+    Protected.i hFileQuitIcon, hActionDownloadIcon, hActionSettingsIcon, hHelpManualIcon, hHelpAboutIcon, hActionImportIcon, hActionBuildIcon, hActionPublishIcon
 
     lastError$ = #Empty$
     
-    If IsWindow(wndId)
-      mainWindowId = wndId
+    If IsWindow(hWindow)
+      hMainWindowId = hWindow
       
       hFileQuitIcon = CatchImage(#PB_Any, ?FileQuitIcon)
       hActionDownloadIcon = CatchImage(#PB_Any, ?ActionDownloadIcon)
+      hActionImportIcon = CatchImage(#PB_Any, ?ActionImportIcon)
+      hActionBuildIcon = CatchImage(#PB_Any, ?ActionBuildIcon)
+      hActionPublishIcon = CatchImage(#PB_Any, ?ActionPublishIcon)
       hActionSettingsIcon = CatchImage(#PB_Any, ?ActionSettingsIcon)
       hHelpManualIcon = CatchImage(#PB_Any, ?HelpManualIcon)
       hHelpAboutIcon = CatchImage(#PB_Any, ?HelpAboutIcon)
       
-      menuBarId = CreateImageMenu(#PB_Any, WindowID(mainWindowId))
+      hMenuBarId = CreateImageMenu(#PB_Any, WindowID(hMainWindowId))
       
-      If IsMenu(menuBarId)
+      If IsMenu(hMenuBarId)
         MenuTitle("&File")
-          MenuBar()
-          MenuItem(#File_Quit, "&Quit"  + Chr(9) + "Cmd+Q", ImageID(hFileQuitIcon))
-          
+          CompilerIf #PB_Compiler_OS = #PB_OS_Windows
+            MenuBar()
+            MenuItem(#File_Quit, "&Quit"  + Chr(9) + "Cmd+Q", ImageID(hFileQuitIcon))
+            BindMenuEvent(hMenuBarId, #File_Quit, @OnQuitClicked())
+          CompilerEndIf
+        
         MenuTitle("Action")
           MenuItem(#Action_Download, "&Download SimFin Files", ImageID(hActionDownloadIcon))
-          MenuBar()
-          MenuItem(#Action_Preferences, "&Settings", ImageID(hActionSettingsIcon))
-          
+          MenuItem(#Action_Import, "&Import Data Files", ImageID(hActionImportIcon))
+          MenuItem(#Action_Build, "&Build Database", ImageID(hActionBuildIcon))
+          MenuItem(#Action_Publish, "&Publish Database", ImageID(hActionPublishIcon))
+          CompilerIf #PB_Compiler_OS = #PB_OS_Windows
+            MenuBar()
+            MenuItem(#Action_Preferences, "&Settings", ImageID(hActionSettingsIcon))
+            BindMenuEvent(hMenuBarId, #Action_Preferences, @OnSettingsClicked()) 
+          CompilerEndIf
+        
         MenuTitle("&Help")
-           MenuItem(#Help_Manual, "&Manual", ImageID(hHelpManualIcon))
-          MenuBar()
-          MenuItem(#Help_About, "&About", ImageID(hHelpAboutIcon))
+          MenuItem(#Help_Manual, "&Manual", ImageID(hHelpManualIcon))
+          CompilerIf #PB_Compiler_OS = #PB_OS_Windows
+            MenuBar()
+            MenuItem(#Help_About, "&About", ImageID(hHelpAboutIcon))
+            BindMenuEvent(hMenuBarId, #Help_About, @OnAboutClicked())
+          CompilerEndIf
           
         ; Activate the Mac application menu options  
         CompilerIf #PB_Compiler_OS = #PB_OS_MacOS
@@ -116,19 +138,20 @@ Module MenuBarModule
           MenuItem(#PB_Menu_About, "")
           MenuItem(#PB_Menu_Preferences, "")
           
-          BindMenuEvent(menuBarId, #PB_Menu_About, @OnAboutClicked())
-          BindMenuEvent(menuBarId, #PB_Menu_Preferences, @OnSettingsClicked())
-          BindMenuEvent(menuBarId, #PB_Menu_Quit, @OnQuitClicked())
+          BindMenuEvent(hMenuBarId, #PB_Menu_About, @OnAboutClicked())
+          BindMenuEvent(hMenuBarId, #PB_Menu_Preferences, @OnSettingsClicked())
+          BindMenuEvent(hMenuBarId, #PB_Menu_Quit, @OnQuitClicked())
         CompilerEndIf
         
-        BindMenuEvent(menuBarId, #File_Quit, @OnQuitClicked())
-        
-        BindMenuEvent(menuBarId, #Action_Download, @OnDownloadClicked()) 
-        BindMenuEvent(menuBarId, #Action_Preferences, @OnSettingsClicked()) 
-        
-        BindMenuEvent(menuBarId, #Help_Manual, @OnManualClicked())        
-        BindMenuEvent(menuBarId, #Help_About, @OnAboutClicked())
-        ProcedureReturn menuBarId
+        ; Bind common events
+        BindMenuEvent(hMenuBarId, #Action_Download, @OnDownloadClicked()) 
+        BindMenuEvent(hMenuBarId, #Action_Import, @OnImportClicked())
+        BindMenuEvent(hMenuBarId, #Action_Build, @OnBuildClicked())
+        BindMenuEvent(hMenuBarId, #Action_Publish, @OnPublishClicked())
+
+        BindMenuEvent(hMenuBarId, #Help_Manual, @OnManualClicked())        
+
+        ProcedureReturn hMenuBarId
       EndIf
     EndIf
     
@@ -142,6 +165,15 @@ Module MenuBarModule
     
     ActionDownloadIcon:
     IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/download@16px.png"
+        
+    ActionImportIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/import@16px.png"
+    
+    ActionBuildIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/build@16px.png"
+    
+    ActionPublishIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/publish@16px.png"
     
     ActionSettingsIcon:
     IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/settings@16px.png"
@@ -155,8 +187,8 @@ Module MenuBarModule
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 153
-; FirstLine = 118
-; Folding = --
+; CursorPosition = 145
+; FirstLine = 131
+; Folding = ---
 ; EnableXP
 ; DPIAware

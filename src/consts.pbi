@@ -28,7 +28,7 @@ DeclareModule Consts
   #WND_MAIN_max_width = 1200
   #WND_MAIN_max_height = 800
   
-  #WND_MAIN_NavPanel_Width = 200
+  #WND_MAIN_NavPanel_Width = 175
   
   ;-------- Exit Codes --------
   #EXIT_SUCCESS                  = 0
@@ -41,26 +41,43 @@ DeclareModule Consts
   Enumeration #PB_Event_FirstCustomValue + 5000
     #APP_EVENT_Quit
     #APP_EVENT_Download
+    #APP_EVENT_Import
+    #APP_EVENT_Build
+    #APP_EVENT_Publish
     #APP_EVENT_Setup
     #APP_EVENT_Manual
     #APP_EVENT_About
   EndEnumeration
   
+  ;-------- Menu & ToolBar IDs --------
+  Enumeration 
+    #File_Quit
+    #Action_Download
+    #Action_Import
+    #Action_Publish
+    #Action_Build
+    #Action_Preferences
+    #Help_Manual
+    #Help_About
+  EndEnumeration
   ;-------- Gadget Colors --------
-  Define.l NAV_PANEL_Background = RGB($9E, $9E, $9E)
-  Define.l NAV_PANEL_Item_Background = RGB($75, $75, $75)
+  Define.l NAV_PANEL_Background = RGB($75, $75, $75)
+  Define.l NAV_PANEL_Item_Background = RGB($9E, $9E, $9E)
   Define.l NAV_PANEL_Item_Selected_Background = RGB($42, $A5, $F5)
   Define.l NAV_PANEL_Item_Selected_Text = RGB($FF, $FF, $FF)
   
-  Define.l MAIN_PANEL_Background = NAV_PANEL_Background
+  Define.l MAIN_PANEL_Background = RGB($9E, $9E, $9E)
+  
+  Define.l WND_Background = RGB($9E, $9E, $9E)
+  
 EndDeclareModule
 
 Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 56
-; FirstLine = 16
+; CursorPosition = 66
+; FirstLine = 40
 ; Folding = -
 ; EnableXP
 ; DPIAware

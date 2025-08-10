@@ -2,6 +2,21 @@
 <AxialisIconCollection>
   <Name>menu-toolbar</Name>
   <Icon>
+    <Name>import</Name>
+    <HasBackground>0</HasBackground>
+    <StockIconName>database-import.axvi</StockIconName>
+    <StockIconFamily>Axialis Flat Design</StockIconFamily>
+    <StockIconSet>Database</StockIconSet>
+    <StockOverlayName></StockOverlayName>
+    <ResourceIDValue>105</ResourceIDValue>
+    <ResourceID>ID_DATABASE-IMPORT</ResourceID>
+    <OverlayOffset>1</OverlayOffset>
+    <Opacity>255</Opacity>
+    <ColorizeMode>1</ColorizeMode>
+    <StockOverlayPos>4</StockOverlayPos>
+    <DarkMode>0</DarkMode>
+  </Icon>
+  <Icon>
     <Name>exit</Name>
     <HasBackground>0</HasBackground>
     <StockIconName>exit.axvi</StockIconName>
@@ -69,7 +84,37 @@
     <StockIconSet>Word Processing</StockIconSet>
     <StockOverlayName>search.axvi</StockOverlayName>
     <ResourceIDValue>104</ResourceIDValue>
-    <ResourceID>ID_MANUAL_BUTTON</ResourceID>
+    <ResourceID>ID_MANUAL</ResourceID>
+    <OverlayOffset>1</OverlayOffset>
+    <Opacity>255</Opacity>
+    <ColorizeMode>1</ColorizeMode>
+    <StockOverlayPos>4</StockOverlayPos>
+    <DarkMode>0</DarkMode>
+  </Icon>
+  <Icon>
+    <Name>build</Name>
+    <HasBackground>0</HasBackground>
+    <StockIconName>database-merge.axvi</StockIconName>
+    <StockIconFamily>Axialis Flat Design</StockIconFamily>
+    <StockIconSet>Database</StockIconSet>
+    <StockOverlayName>gear.axvi</StockOverlayName>
+    <ResourceIDValue>106</ResourceIDValue>
+    <ResourceID>ID_DATABASE-MERGE-GEAR</ResourceID>
+    <OverlayOffset>1</OverlayOffset>
+    <Opacity>255</Opacity>
+    <ColorizeMode>1</ColorizeMode>
+    <StockOverlayPos>4</StockOverlayPos>
+    <DarkMode>0</DarkMode>
+  </Icon>
+  <Icon>
+    <Name>publish</Name>
+    <HasBackground>0</HasBackground>
+    <StockIconName>report-employee.axvi</StockIconName>
+    <StockIconFamily>Axialis Flat Design</StockIconFamily>
+    <StockIconSet>Business</StockIconSet>
+    <StockOverlayName>world.axvi</StockOverlayName>
+    <ResourceIDValue>107</ResourceIDValue>
+    <ResourceID>ID_REPORT-EMPLOYEE-WORLD</ResourceID>
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>1</ColorizeMode>

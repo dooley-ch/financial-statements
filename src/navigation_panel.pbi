@@ -83,7 +83,7 @@ Module NavigationPanelUI
   Define.i hMainWindow                          ; Holds the ID of the host window,
   Define hNavPanel                              ; Holds the id of the navigation panel
   Define configInfo.NavigationPanelConfigInfo   ; Holds the panel's configuration information
-  Define currentItemId.i = 0                    ; Holds the id of the currently selected item, if any
+  Define currentItemId.i = -1                    ; Holds the id of the currently selected item, if any
   
   InitNavigationPanelConfig(@configInfo) ; Sets the defdault configuration for the panel
   
@@ -470,8 +470,8 @@ Module NavigationPanelUI
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 231
-; FirstLine = 208
+; CursorPosition = 416
+; FirstLine = 385
 ; Folding = ---
 ; EnableXP
 ; DPIAware

@@ -21,6 +21,8 @@ XIncludeFile "menubar.pbi"
 XIncludeFile "toolbar.pbi"
 XIncludeFile "navigation_panel.pbi"
 XIncludeFile "main_panel.pbi"
+XIncludeFile "setup_ui.pbi"
+XIncludeFile "messageboxes.pbi"
 
 UseModule Consts
 UseModule SetupModule
@@ -31,25 +33,45 @@ UseModule MenuBarModule
 UseModule ToolBarModule
 UseModule NavigationPanelUI
 UseModule MainPanelUI
+UseModule SetupUI
+UseModule MessageBoxeaUI
 
 UsePNGImageDecoder()
 
 ;-------- Support Routines & Variables --------
-Define.i mainWindowId, menuBarId, toolBarId, statusBarId, navPanelId, mainPanelId, event
+Define.i hMainWindowId, hMenuBarId, hToolBarId, hStatusBarId, hNavPanelId, hMainPanelId, event
 Define mainWindowLocation.WindowLocation
 Define navPanelConfig.NavigationPanelConfigInfo
 Define.i exitCode = #EXIT_SUCCESS
 
-  Enumeration NavItemIds 
+  Enumeration NavItemIds 100 
     #NAV_ITEM_Download
+    #NAV_ITEM_Import
+    #NAV_ITEM_Build
+    #NAV_ITEM_Publish
   EndEnumeration
 ;-------- Navigation Panel Callbacks --------
 
 Procedure OnDownloadItemClicked()
-  Shared mainWindowId
-  PostEvent(#APP_EVENT_Download, mainWindowId, #PB_Ignore, #PB_Ignore)
+  Shared hMainWindowId
+  PostEvent(#APP_EVENT_Download, hMainWindowId, #PB_Ignore, #PB_Ignore)
 EndProcedure
-  
+
+Procedure OnImportItemClicked()
+  Shared hMainWindowId
+  PostEvent(#APP_EVENT_Import, hMainWindowId, #PB_Ignore, #PB_Ignore)
+EndProcedure
+
+Procedure OnBuildItemClicked()
+  Shared hMainWindowId
+  PostEvent(#APP_EVENT_Build, hMainWindowId, #PB_Ignore, #PB_Ignore)
+EndProcedure
+
+Procedure OnPublishItemClicked()
+  Shared hMainWindowId
+  PostEvent(#APP_EVENT_Publish, hMainWindowId, #PB_Ignore, #PB_Ignore)
+EndProcedure
+
 ;┌───────────────────────────────────────────────────────────────────────────────────────────────
 ;│     Event Handlers    
 ;└───────────────────────────────────────────────────────────────────────────────────────────────
@@ -59,23 +81,23 @@ EndProcedure
 ; Note: calculates and resizes navigation panel and the display panel
 ;
 Procedure OnResizeMainWindow()
-  Shared mainWindowId, navPanelId, mainPanelId, statusBarId
+  Shared hMainWindowId, hNavPanelId, hMainPanelId, hStatusBarId
   Protected.i mainWindowHeight, mainWindowWidth, panelX, panelWidth
   
-  mainWindowHeight = WindowHeight(mainWindowId, #PB_Window_InnerCoordinate) - StatusBarHeight(statusBarId)
-  mainWindowWidth = WindowWidth(mainWindowId, #PB_Window_InnerCoordinate)
+  mainWindowHeight = WindowHeight(hMainWindowId, #PB_Window_InnerCoordinate) - StatusBarHeight(hStatusBarId)
+  mainWindowWidth = WindowWidth(hMainWindowId, #PB_Window_InnerCoordinate)
   
   ; Resize the Nav Panel
-  If IsGadget(navPanelId)
-    ResizeGadget(navPanelId, 0, 0, #WND_MAIN_NavPanel_Width, mainWindowHeight)
+  If IsGadget(hNavPanelId)
+    ResizeGadget(hNavPanelId, 0, 0, #WND_MAIN_NavPanel_Width, mainWindowHeight)
   EndIf
   
   ; Resize the Display Panel
-  If IsGadget(mainPanelId)
+  If IsGadget(hMainPanelId)
     panelX = #WND_MAIN_NavPanel_Width
     panelWidth = mainWindowWidth - panelX
     
-    ResizeGadget(mainPanelId, panelX, 0, panelWidth, mainWindowHeight)
+    ResizeGadget(hMainPanelId, panelX, 0, panelWidth, mainWindowHeight)
   EndIf
 EndProcedure
 
@@ -96,9 +118,10 @@ EndIf
 
 GetWindowLocation(#WND_MAIN_cfg_name, @mainWindowLocation)
 
-mainWindowId = OpenWindow(#PB_Any, mainWindowLocation\X, mainWindowLocation\Y, mainWindowLocation\Width, mainWindowLocation\Height, #APP_TITLE$, #MainWindowFlags)
-If IsWindow(mainWindowId)
-  WindowBounds(mainWindowId, #WND_MAIN_min_width, #WND_MAIN_min_height, #WND_MAIN_max_width, #WND_MAIN_max_height)
+hMainWindowId = OpenWindow(#PB_Any, mainWindowLocation\X, mainWindowLocation\Y, mainWindowLocation\Width, mainWindowLocation\Height, #APP_TITLE$, #MainWindowFlags)
+If IsWindow(hMainWindowId)
+  WindowBounds(hMainWindowId, #WND_MAIN_min_width, #WND_MAIN_min_height, #WND_MAIN_max_width, #WND_MAIN_max_height)
+  SetWindowColor(hMainWindowId, WND_Background)
   
   Define.i hNavItemIcon, hNavItemHotIcon, hNavIconDisabledIcon
     
@@ -117,15 +140,31 @@ If IsWindow(mainWindowId)
   hNavItemIcon = CatchImage(#PB_Any, ?ActionDownloadIcon)
   hNavItemHotIcon = CatchImage(#PB_Any, ?ActionDownloadHotIcon)
   hNavIconDisabledIcon = CatchImage(#PB_Any, ?ActionDownloadDisabledIcon)
-  
   AddNavigationItem(#NAV_ITEM_Download, "Download", ImageID(hNavItemIcon), @OnDownloadItemClicked(), ImageID(hNavItemHotIcon), ImageID(hNavIconDisabledIcon)) 
   
+  hNavItemIcon = CatchImage(#PB_Any, ?ActionImportIcon)
+  hNavItemHotIcon = CatchImage(#PB_Any, ?ActionImportHotIcon)
+  hNavIconDisabledIcon = CatchImage(#PB_Any, ?ActionImportDisabledIcon)
+  AddNavigationItem(#NAV_ITEM_Import, "Import", ImageID(hNavItemIcon), @OnImportItemClicked(), ImageID(hNavItemHotIcon), ImageID(hNavIconDisabledIcon)) 
+  
+  hNavItemIcon = CatchImage(#PB_Any, ?ActionBuildIcon)
+  hNavItemHotIcon = CatchImage(#PB_Any, ?ActionBuildHotIcon)
+  hNavIconDisabledIcon = CatchImage(#PB_Any, ?ActionBuildDisabledIcon)
+  AddNavigationItem(#NAV_ITEM_Build, "Build", ImageID(hNavItemIcon), @OnBuildItemClicked(), ImageID(hNavItemHotIcon), ImageID(hNavIconDisabledIcon)) 
+  
+  hNavItemIcon = CatchImage(#PB_Any, ?ActionPublishIcon)
+  hNavItemHotIcon = CatchImage(#PB_Any, ?ActionPublishHotIcon)
+  hNavIconDisabledIcon = CatchImage(#PB_Any, ?ActionPublishDisabledIcon)
+  AddNavigationItem(#NAV_ITEM_Publish, "Publish", ImageID(hNavItemIcon), @OnPublishItemClicked(), ImageID(hNavItemHotIcon), ImageID(hNavIconDisabledIcon)) 
+  
   ; Create main window gadgets
-  statusBarId = CreateAppStatusBar(mainWindowId)
-  menuBarId = CreateAppMenuBar(mainWindowId)
-  toolBarId = CreateAppToolBar(mainWindowId)
-  navPanelId = CreateNavigationPanel(mainWindowId)
-  mainPanelId = CreateMainPanel(mainWindowId)
+  hStatusBarId = CreateAppStatusBar(hMainWindowId)
+  hMenuBarId = CreateAppMenuBar(hMainWindowId)
+  hToolBarId = CreateAppToolBar(hMainWindowId)
+  hNavPanelId = CreateNavigationPanel(hMainWindowId)
+  hMainPanelId = CreateMainPanel(hMainWindowId)
+  
+  Define exitApp.b = #False
   
   Repeat
     event = WaitWindowEvent()
@@ -133,6 +172,12 @@ If IsWindow(mainWindowId)
     Select event
       Case #APP_EVENT_Download
         Debug "Download Action"
+      Case #APP_EVENT_Import
+        Debug "Import Action"
+      Case #APP_EVENT_Build
+        Debug "Build Action"
+      Case #APP_EVENT_Publish
+        Debug "Publish Action"
       Case #APP_EVENT_Setup
         Debug "Setup Action"
       Case #APP_EVENT_Manual
@@ -142,20 +187,20 @@ If IsWindow(mainWindowId)
       Case #PB_Event_SizeWindow
         OnResizeMainWindow()
       Case #PB_Event_CloseWindow, #APP_EVENT_Quit
-        Break
+        exitApp = ConfirmActionMessage(hMainWindowId, "Are you sure you'd like to exit the application?")
     EndSelect
-  Until #False
+  Until exitApp
   
   With mainWindowLocation
-    \X = WindowX(mainWindowId, #PB_Window_FrameCoordinate)
-    \Y = WindowY(mainWindowId, #PB_Window_FrameCoordinate)
-    \Height = WindowHeight(mainWindowId, #PB_Window_InnerCoordinate)
-    \Width = WindowWidth(mainWindowId, #PB_Window_InnerCoordinate)
+    \X = WindowX(hMainWindowId, #PB_Window_FrameCoordinate)
+    \Y = WindowY(hMainWindowId, #PB_Window_FrameCoordinate)
+    \Height = WindowHeight(hMainWindowId, #PB_Window_InnerCoordinate)
+    \Width = WindowWidth(hMainWindowId, #PB_Window_InnerCoordinate)
   EndWith
   
   SetWindowLocation(#WND_MAIN_cfg_name, @mainWindowLocation)
   
-  CloseWindow(mainWindowId)
+  CloseWindow(hMainWindowId)
 Else
   exitCode = #EXIT_COMMAND_WND_NOT_CREATED
 EndIf
@@ -178,11 +223,38 @@ DataSection
   
   ActionDownloadDisabledIcon:
   IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/download@48px.png"   
+  
+  ActionImportIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/import@48px.png"   
+  
+  ActionImportHotIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/import@48px.png" 
+  
+  ActionImportDisabledIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/import@48px.png"  
+  
+  ActionBuildIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/build@48px.png"   
+  
+  ActionBuildHotIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/build@48px.png" 
+  
+  ActionBuildDisabledIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/build@48px.png" 
+  
+  ActionPublishIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/publish@48px.png"   
+  
+  ActionPublishHotIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/publish@48px.png" 
+  
+  ActionPublishDisabledIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/publish@48px.png"  
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 122
-; FirstLine = 88
+; CursorPosition = 124
+; FirstLine = 105
 ; Folding = -
 ; EnableXP
 ; DPIAware
