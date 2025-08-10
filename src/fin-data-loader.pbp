@@ -7,16 +7,24 @@
   <section name="data">
     <explorer view="" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2025-08-10 10:49" user="jdooley" host="Jamess-iMac.local"/>
+    <lastopen date="2025-08-10 15:01" user="jdooley" host="Jamess-iMac.local"/>
   </section>
   <section name="files">
+    <file name="navigation_panel.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="9adaf9545db943ca9a07d8f483e42f39"/>
+    </file>
+    <file name="main_panel.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="c729bccab04a607442a66075c740360b"/>
+    </file>
     <file name="main.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="1" panelstate=""/>
-      <fingerprint md5="eafaefaa8e799a8aa3182418c7d7d26e"/>
+      <fingerprint md5="9b37dffee2cbfc35bf478c92f253127a"/>
     </file>
     <file name="consts.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
-      <fingerprint md5="aaa32ef015b3ee7fde3070c9d043d241"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="3" panelstate=""/>
+      <fingerprint md5="cfb3714661fd8b3c73e0dc358f980c70"/>
     </file>
     <file name="file_utils.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
@@ -27,8 +35,8 @@
       <fingerprint md5="aa4da6ceda90c664ff0e2e33c80edbbb"/>
     </file>
     <file name="menubar.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
-      <fingerprint md5="c50d49a3c3e77759ffb411373f85c32b"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="2" panelstate=""/>
+      <fingerprint md5="4de0a63970627a5b3fe6dc8551dece93"/>
     </file>
     <file name="setup.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
@@ -44,11 +52,7 @@
     </file>
     <file name="toolbar.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
-      <fingerprint md5="5aa71b65d682aeb332144e26f8ccbe85"/>
-    </file>
-    <file name="navigation_panel.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="0" panelstate=""/>
-      <fingerprint md5="f0ccae40085d49c6e0700ba0aa71bde6"/>
+      <fingerprint md5="7f278a14dce6aa973496b3d646d5ba22"/>
     </file>
   </section>
   <section name="targets">

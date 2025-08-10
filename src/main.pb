@@ -20,6 +20,7 @@ XIncludeFile "statusbar.pbi"
 XIncludeFile "menubar.pbi"
 XIncludeFile "toolbar.pbi"
 XIncludeFile "navigation_panel.pbi"
+XIncludeFile "main_panel.pbi"
 
 UseModule Consts
 UseModule SetupModule
@@ -29,13 +30,26 @@ UseModule StatusBarModule
 UseModule MenuBarModule
 UseModule ToolBarModule
 UseModule NavigationPanelUI
+UseModule MainPanelUI
+
+UsePNGImageDecoder()
 
 ;-------- Support Routines & Variables --------
-Define.i mainWindowId, menuBarId, toolBarId, statusBarId, navPanelId, displayPanelId, event
+Define.i mainWindowId, menuBarId, toolBarId, statusBarId, navPanelId, mainPanelId, event
 Define mainWindowLocation.WindowLocation
 Define navPanelConfig.NavigationPanelConfigInfo
 Define.i exitCode = #EXIT_SUCCESS
 
+  Enumeration NavItemIds 
+    #NAV_ITEM_Download
+  EndEnumeration
+;-------- Navigation Panel Callbacks --------
+
+Procedure OnDownloadItemClicked()
+  Shared mainWindowId
+  PostEvent(#APP_EVENT_Download, mainWindowId, #PB_Ignore, #PB_Ignore)
+EndProcedure
+  
 ;┌───────────────────────────────────────────────────────────────────────────────────────────────
 ;│     Event Handlers    
 ;└───────────────────────────────────────────────────────────────────────────────────────────────
@@ -45,8 +59,8 @@ Define.i exitCode = #EXIT_SUCCESS
 ; Note: calculates and resizes navigation panel and the display panel
 ;
 Procedure OnResizeMainWindow()
-  Shared mainWindowId, navPanelId, statusBarId
-  Protected.i mainWindowHeight, mainWindowWidth
+  Shared mainWindowId, navPanelId, mainPanelId, statusBarId
+  Protected.i mainWindowHeight, mainWindowWidth, panelX, panelWidth
   
   mainWindowHeight = WindowHeight(mainWindowId, #PB_Window_InnerCoordinate) - StatusBarHeight(statusBarId)
   mainWindowWidth = WindowWidth(mainWindowId, #PB_Window_InnerCoordinate)
@@ -57,7 +71,12 @@ Procedure OnResizeMainWindow()
   EndIf
   
   ; Resize the Display Panel
-  
+  If IsGadget(mainPanelId)
+    panelX = #WND_MAIN_NavPanel_Width
+    panelWidth = mainWindowWidth - panelX
+    
+    ResizeGadget(mainPanelId, panelX, 0, panelWidth, mainWindowHeight)
+  EndIf
 EndProcedure
 
 ;┌───────────────────────────────────────────────────────────────────────────────────────────────
@@ -81,6 +100,8 @@ mainWindowId = OpenWindow(#PB_Any, mainWindowLocation\X, mainWindowLocation\Y, m
 If IsWindow(mainWindowId)
   WindowBounds(mainWindowId, #WND_MAIN_min_width, #WND_MAIN_min_height, #WND_MAIN_max_width, #WND_MAIN_max_height)
   
+  Define.i hNavItemIcon, hNavItemHotIcon, hNavIconDisabledIcon
+    
   ; Configure the navigation panel
   InitNavigationPanelConfig(@navPanelConfig)
   
@@ -93,10 +114,18 @@ If IsWindow(mainWindowId)
   
   SetNavigationPanelConfig(@navPanelConfig)
   
+  hNavItemIcon = CatchImage(#PB_Any, ?ActionDownloadIcon)
+  hNavItemHotIcon = CatchImage(#PB_Any, ?ActionDownloadHotIcon)
+  hNavIconDisabledIcon = CatchImage(#PB_Any, ?ActionDownloadDisabledIcon)
+  
+  AddNavigationItem(#NAV_ITEM_Download, "Download", ImageID(hNavItemIcon), @OnDownloadItemClicked(), ImageID(hNavItemHotIcon), ImageID(hNavIconDisabledIcon)) 
+  
+  ; Create main window gadgets
   statusBarId = CreateAppStatusBar(mainWindowId)
   menuBarId = CreateAppMenuBar(mainWindowId)
   toolBarId = CreateAppToolBar(mainWindowId)
   navPanelId = CreateNavigationPanel(mainWindowId)
+  mainPanelId = CreateMainPanel(mainWindowId)
   
   Repeat
     event = WaitWindowEvent()
@@ -139,10 +168,21 @@ LogEnd()
 
 ;-------- Terminate --------
 End #EXIT_SUCCESS
+
+DataSection  
+  ActionDownloadIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/download@48px.png"   
+  
+  ActionDownloadHotIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/download@48px.png" 
+  
+  ActionDownloadDisabledIcon:
+  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/download@48px.png"   
+EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 111
-; FirstLine = 72
+; CursorPosition = 122
+; FirstLine = 88
 ; Folding = -
 ; EnableXP
 ; DPIAware

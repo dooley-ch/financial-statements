@@ -51,14 +51,16 @@ DeclareModule Consts
   Define.l NAV_PANEL_Item_Background = RGB($75, $75, $75)
   Define.l NAV_PANEL_Item_Selected_Background = RGB($42, $A5, $F5)
   Define.l NAV_PANEL_Item_Selected_Text = RGB($FF, $FF, $FF)
+  
+  Define.l MAIN_PANEL_Background = NAV_PANEL_Background
 EndDeclareModule
 
 Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 42
-; FirstLine = 11
+; CursorPosition = 56
+; FirstLine = 16
 ; Folding = -
 ; EnableXP
 ; DPIAware
