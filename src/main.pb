@@ -23,6 +23,7 @@ XIncludeFile "navigation_panel.pbi"
 XIncludeFile "main_panel.pbi"
 XIncludeFile "setup_ui.pbi"
 XIncludeFile "messageboxes.pbi"
+XIncludeFile "about_ui.pbi"
 
 UseModule Consts
 UseModule SetupModule
@@ -35,6 +36,7 @@ UseModule NavigationPanelUI
 UseModule MainPanelUI
 UseModule SetupUI
 UseModule MessageBoxeaUI
+UseModule AboutUI
 
 UsePNGImageDecoder()
 
@@ -50,6 +52,7 @@ Define.i exitCode = #EXIT_SUCCESS
     #NAV_ITEM_Build
     #NAV_ITEM_Publish
   EndEnumeration
+  
 ;-------- Navigation Panel Callbacks --------
 
 Procedure OnDownloadItemClicked()
@@ -70,6 +73,16 @@ EndProcedure
 Procedure OnPublishItemClicked()
   Shared hMainWindowId
   PostEvent(#APP_EVENT_Publish, hMainWindowId, #PB_Ignore, #PB_Ignore)
+EndProcedure
+
+;-------- Functionality --------
+
+Procedure OnShowAboutDialog()
+  Shared hMainWindowId
+  
+  If Not ShowAboutDialog(hMainWindowId)
+    LogError(AboutUIError())
+  EndIf
 EndProcedure
 
 ;┌───────────────────────────────────────────────────────────────────────────────────────────────
@@ -118,7 +131,7 @@ EndIf
 
 GetWindowLocation(#WND_MAIN_cfg_name, @mainWindowLocation)
 
-hMainWindowId = OpenWindow(#PB_Any, mainWindowLocation\X, mainWindowLocation\Y, mainWindowLocation\Width, mainWindowLocation\Height, #APP_TITLE$, #MainWindowFlags)
+hMainWindowId = OpenWindow(#PB_Any, mainWindowLocation\X, mainWindowLocation\Y, mainWindowLocation\Width, mainWindowLocation\Height, #APP_TITLE$ + " (" + #APP_VERSION$ + ")", #MainWindowFlags)
 If IsWindow(hMainWindowId)
   WindowBounds(hMainWindowId, #WND_MAIN_min_width, #WND_MAIN_min_height, #WND_MAIN_max_width, #WND_MAIN_max_height)
   SetWindowColor(hMainWindowId, WND_Background)
@@ -183,7 +196,7 @@ If IsWindow(hMainWindowId)
       Case #APP_EVENT_Manual
         Debug "Manual Action"
       Case #APP_EVENT_About
-        Debug "About Action"
+        OnShowAboutDialog()
       Case #PB_Event_SizeWindow
         OnResizeMainWindow()
       Case #PB_Event_CloseWindow, #APP_EVENT_Quit
@@ -253,8 +266,8 @@ DataSection
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 249
-; FirstLine = 217
-; Folding = -
+; CursorPosition = 133
+; FirstLine = 119
+; Folding = --
 ; EnableXP
 ; DPIAware

@@ -18,18 +18,8 @@ DeclareModule Consts
   #APP_CFG_FILE$ = "app.ini"
   #APP_ORGANISATION$ = "dooley.ch"
   #APP_DATA_FOLDER$ = "financial-statements-loader"
-    
-  ;-------- Main Window --------
-  #WND_MAIN_cfg_name = "main-window"
-  #WND_MAIN_default_X = 50
-  #WND_MAIN_default_Y = 50
-  #WND_MAIN_min_width = 900
-  #WND_MAIN_min_height = 600
-  #WND_MAIN_max_width = 1200
-  #WND_MAIN_max_height = 800
-  
-  #WND_MAIN_NavPanel_Width = 175
-  
+  #APP_COPYRIGHT_NOTICE = "Copyright © 2025 James A. Dooley"
+      
   ;-------- Exit Codes --------
   #EXIT_SUCCESS                  = 0
   #EXIT_GENERAL_ERROR            = 1
@@ -49,6 +39,17 @@ DeclareModule Consts
     #APP_EVENT_About
   EndEnumeration
   
+  ;-------- Main Window --------
+  #WND_MAIN_cfg_name = "main-window"
+  #WND_MAIN_default_X = 50
+  #WND_MAIN_default_Y = 50
+  #WND_MAIN_min_width = 900
+  #WND_MAIN_min_height = 600
+  #WND_MAIN_max_width = 1200
+  #WND_MAIN_max_height = 800
+  
+  #WND_MAIN_NavPanel_Width = 175
+  
   ;-------- Menu & ToolBar IDs --------
   Enumeration 
     #File_Quit
@@ -60,6 +61,13 @@ DeclareModule Consts
     #Help_Manual
     #Help_About
   EndEnumeration
+  
+  ;-------- Dialog --------
+  #DLG_WINDOW_FLAGS = #PB_Window_TitleBar | #PB_Window_WindowCentered | #PB_Window_SystemMenu
+  #DLG_DEFAULT_GADGET_PADDING = 5
+  #DLG_DEFAULT_BUTTON_HEIGHT = 25
+  #DLG_DEFAULT_BUTTON_WIDTH = 100
+  
   ;-------- Gadget Colors --------
   Define.l NAV_PANEL_Background = RGB($E6, $4A, $19)
   Define.l NAV_PANEL_Item_Background = RGB($FF, $57, $22)
@@ -76,8 +84,8 @@ Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 65
-; FirstLine = 40
+; CursorPosition = 68
+; FirstLine = 41
 ; Folding = -
 ; EnableXP
 ; DPIAware
