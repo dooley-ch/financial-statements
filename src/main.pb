@@ -216,45 +216,45 @@ End #EXIT_SUCCESS
 
 DataSection  
   ActionDownloadIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/download@48px.png"   
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/download@48px.png"   
   
   ActionDownloadHotIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/download@48px.png" 
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/hot/download@48px.png" 
   
   ActionDownloadDisabledIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/download@48px.png"   
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/disabled/download@48px.png"   
   
   ActionImportIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/import@48px.png"   
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/import@48px.png"   
   
   ActionImportHotIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/import@48px.png" 
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/hot/import@48px.png" 
   
   ActionImportDisabledIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/import@48px.png"  
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/disabled/import@48px.png"  
   
   ActionBuildIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/build@48px.png"   
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/build@48px.png"   
   
   ActionBuildHotIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/build@48px.png" 
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/hot/build@48px.png" 
   
   ActionBuildDisabledIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/build@48px.png" 
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/disabled/build@48px.png" 
   
   ActionPublishIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/publish@48px.png"   
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/publish@48px.png"   
   
   ActionPublishHotIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/hot/publish@48px.png" 
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/hot/publish@48px.png" 
   
   ActionPublishDisabledIcon:
-  IncludeBinary #PB_Compiler_FilePath + "res/toolbar-menu/disabled/publish@48px.png"  
+  IncludeBinary #PB_Compiler_FilePath + "res/nav-panel/disabled/publish@48px.png"  
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 124
-; FirstLine = 105
+; CursorPosition = 249
+; FirstLine = 217
 ; Folding = -
 ; EnableXP
 ; DPIAware

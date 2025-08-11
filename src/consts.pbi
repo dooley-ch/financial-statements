@@ -61,14 +61,14 @@ DeclareModule Consts
     #Help_About
   EndEnumeration
   ;-------- Gadget Colors --------
-  Define.l NAV_PANEL_Background = RGB($75, $75, $75)
-  Define.l NAV_PANEL_Item_Background = RGB($9E, $9E, $9E)
-  Define.l NAV_PANEL_Item_Selected_Background = RGB($42, $A5, $F5)
+  Define.l NAV_PANEL_Background = RGB($E6, $4A, $19)
+  Define.l NAV_PANEL_Item_Background = RGB($FF, $57, $22)
+  Define.l NAV_PANEL_Item_Selected_Background = RGB($3F, $51, $B5)
   Define.l NAV_PANEL_Item_Selected_Text = RGB($FF, $FF, $FF)
   
-  Define.l MAIN_PANEL_Background = RGB($9E, $9E, $9E)
+  Define.l MAIN_PANEL_Background = RGB($FF, $57, $22)
   
-  Define.l WND_Background = RGB($9E, $9E, $9E)
+  Define.l WND_Background = RGB($FF, $57, $22)
   
 EndDeclareModule
 
@@ -76,7 +76,7 @@ Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 66
+; CursorPosition = 65
 ; FirstLine = 40
 ; Folding = -
 ; EnableXP

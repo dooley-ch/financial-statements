@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AxialisIconCollection>
-  <Name>menu-toolbar-flat</Name>
+  <Name>nav-panel-hot</Name>
   <Icon>
     <Name>exit</Name>
     <HasBackground>0</HasBackground>
@@ -13,7 +13,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>-2113634303</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -29,8 +30,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <ColorizeOverlay>#410093</ColorizeOverlay>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>4</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -46,8 +47,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <ColorizeOverlay>#410093</ColorizeOverlay>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>4</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -63,7 +64,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>-2113634303</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -79,8 +81,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <ColorizeOverlay>#410093</ColorizeOverlay>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>4</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -96,8 +98,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <ColorizeOverlay>#410093</ColorizeOverlay>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>4</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -113,8 +115,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <ColorizeOverlay>#410093</ColorizeOverlay>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>4</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
@@ -130,8 +132,8 @@
     <OverlayOffset>1</OverlayOffset>
     <Opacity>255</Opacity>
     <ColorizeMode>0</ColorizeMode>
-    <ColorizeOverlay>#410093</ColorizeOverlay>
-    <Colorize>#410093</Colorize>
+    <ColorizeOverlay>#FFFFFF</ColorizeOverlay>
+    <Colorize>#FFFFFF</Colorize>
     <StockOverlayPos>4</StockOverlayPos>
     <DarkMode>0</DarkMode>
   </Icon>
