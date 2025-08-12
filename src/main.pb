@@ -20,10 +20,11 @@ XIncludeFile "statusbar.pbi"
 XIncludeFile "menubar.pbi"
 XIncludeFile "toolbar.pbi"
 XIncludeFile "navigation_panel.pbi"
-XIncludeFile "main_panel.pbi"
 XIncludeFile "setup_ui.pbi"
 XIncludeFile "messageboxes.pbi"
 XIncludeFile "about_ui.pbi"
+XIncludeFile "splash-panel.pbi"
+XIncludeFile "main_panel.pbi"
 
 UseModule Consts
 UseModule SetupModule
@@ -274,8 +275,7 @@ DataSection
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 239
-; FirstLine = 84
+; CursorPosition = 21
 ; Folding = --
 ; EnableXP
 ; DPIAware
