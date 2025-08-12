@@ -101,8 +101,8 @@ Module ToolBarModule
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 65
-; FirstLine = 56
+; CursorPosition = 35
+; FirstLine = 33
 ; Folding = -
 ; EnableXP
 ; DPIAware

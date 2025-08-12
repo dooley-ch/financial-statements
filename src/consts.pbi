@@ -65,8 +65,11 @@ DeclareModule Consts
   ;-------- Dialog --------
   #DLG_WINDOW_FLAGS = #PB_Window_TitleBar | #PB_Window_WindowCentered | #PB_Window_SystemMenu
   #DLG_DEFAULT_GADGET_PADDING = 5
+  
   #DLG_DEFAULT_BUTTON_HEIGHT = 25
   #DLG_DEFAULT_BUTTON_WIDTH = 100
+  #DLG_DEFAULT_IMAGE_BUTTON_HEIGHT = 28
+  #DLG_DEFAULT_IMAGE_BUTTON_WIDTH = 28
   
   ;-------- Gadget Colors --------
   Define.l NAV_PANEL_Background = RGB($E6, $4A, $19)
@@ -84,8 +87,8 @@ Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 68
-; FirstLine = 41
+; CursorPosition = 77
+; FirstLine = 44
 ; Folding = -
 ; EnableXP
 ; DPIAware

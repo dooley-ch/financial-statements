@@ -111,7 +111,8 @@ Module AboutUI
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 26
+; CursorPosition = 104
+; FirstLine = 54
 ; Folding = -
 ; EnableXP
 ; DPIAware

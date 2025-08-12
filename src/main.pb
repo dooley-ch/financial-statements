@@ -85,6 +85,14 @@ Procedure OnShowAboutDialog()
   EndIf
 EndProcedure
 
+Procedure OnOpenSetupDialog()
+  Shared hMainWindowId
+  
+  If Not OpenSettingsDialog(hMainWindowId)
+    LogError(SetupUIError())
+  EndIf
+EndProcedure
+
 ;┌───────────────────────────────────────────────────────────────────────────────────────────────
 ;│     Event Handlers    
 ;└───────────────────────────────────────────────────────────────────────────────────────────────
@@ -192,7 +200,7 @@ If IsWindow(hMainWindowId)
       Case #APP_EVENT_Publish
         Debug "Publish Action"
       Case #APP_EVENT_Setup
-        Debug "Setup Action"
+        OnOpenSetupDialog()
       Case #APP_EVENT_Manual
         Debug "Manual Action"
       Case #APP_EVENT_About
@@ -211,7 +219,7 @@ If IsWindow(hMainWindowId)
     \Width = WindowWidth(hMainWindowId, #PB_Window_InnerCoordinate)
   EndWith
   
-  SetWindowLocation(#WND_MAIN_cfg_name, @mainWindowLocation)
+  StoreWindowLocation(#WND_MAIN_cfg_name, @mainWindowLocation)
   
   CloseWindow(hMainWindowId)
 Else
@@ -266,8 +274,8 @@ DataSection
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 133
-; FirstLine = 119
+; CursorPosition = 239
+; FirstLine = 84
 ; Folding = --
 ; EnableXP
 ; DPIAware

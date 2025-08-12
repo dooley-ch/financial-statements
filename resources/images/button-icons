@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AxialisIconCollection>
+  <Name></Name>
+  <Icon>
+    <Name>browse-folder</Name>
+    <HasBackground>0</HasBackground>
+    <StockIconName>folder.axvi</StockIconName>
+    <StockIconFamily>Axialis Line Design</StockIconFamily>
+    <StockIconSet>Basic</StockIconSet>
+    <StockOverlayName>search.axvi</StockOverlayName>
+    <ResourceIDValue>100</ResourceIDValue>
+    <ResourceID>ID_FOLDER-SEARCH</ResourceID>
+    <OverlayOffset>1</OverlayOffset>
+    <Opacity>255</Opacity>
+    <ColorizeMode>0</ColorizeMode>
+    <StockOverlayPos>4</StockOverlayPos>
+    <DarkMode>0</DarkMode>
+  </Icon>
+</AxialisIconCollection>
