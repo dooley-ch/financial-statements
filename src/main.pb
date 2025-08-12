@@ -24,6 +24,8 @@ XIncludeFile "setup_ui.pbi"
 XIncludeFile "messageboxes.pbi"
 XIncludeFile "about_ui.pbi"
 XIncludeFile "splash-panel.pbi"
+XIncludeFile "download_panel_ui.pbi"
+XIncludeFile "import_panel_ui.pbi"
 XIncludeFile "main_panel.pbi"
 
 UseModule Consts
@@ -275,7 +277,8 @@ DataSection
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 21
+; CursorPosition = 27
+; FirstLine = 20
 ; Folding = --
 ; EnableXP
 ; DPIAware

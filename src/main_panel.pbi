@@ -21,10 +21,12 @@ Module MainPanelUI
   
   UseModule Consts
   UseModule SplashPanelUI
+  UseModule DownloadPanelUI
+  UseModule ImportPanelUI
   
   Define lastError$ = ""
   Define.i hMainWindowId, hMainPanelId
-  Define.i hCurrentPanel, hSplashPanel
+  Define.i hCurrentPanel, hSplashPanel, hDownloadPanel, hImportPanel
   
   Procedure OnResizePanel()
     Shared hMainPanelId, hCurrentPanel
@@ -54,7 +56,7 @@ Module MainPanelUI
   ; Returns: The id of the new panel
   ;
   Procedure.i CreateMainPanel(hWindowId.i)
-    Shared hMainWindowId, hMainPanelId, hSplashPanel, hCurrentPanel, lastError$
+    Shared hMainWindowId, hMainPanelId, hSplashPanel, hDownloadPanel, hImportPanel, hCurrentPanel, lastError$
     
     lastError$ = #Empty$
     
@@ -64,9 +66,14 @@ Module MainPanelUI
       hMainPanelId = ContainerGadget(#PB_Any, 300, 300, 300, 300, #PB_Container_BorderLess)
       If IsGadget(hMainPanelId)
           hSplashPanel = CreateSplashPanel(hMainWindowId)
+          hDownloadPanel = CreateDownloadPanel(hMainWindowId)
+          hImportPanel = CreateImportPanel(hMainWindowId)
         CloseGadgetList()
         
-        hCurrentPanel = hSplashPanel
+        HideGadget(hSplashPanel, #True)
+        HideGadget(hDownloadPanel, #True)
+        
+        hCurrentPanel = hImportPanel
         
         SetGadgetColor(hMainPanelId, #PB_Gadget_BackColor, MAIN_PANEL_Background)
         
@@ -86,8 +93,8 @@ Module MainPanelUI
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 33
-; FirstLine = 14
+; CursorPosition = 74
+; FirstLine = 46
 ; Folding = -
 ; EnableXP
 ; DPIAware

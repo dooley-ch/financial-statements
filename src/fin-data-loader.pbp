@@ -7,28 +7,36 @@
   <section name="data">
     <explorer view="" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2025-08-12 21:29" user="jdooley" host="Jamess-iMac.local"/>
+    <lastopen date="2025-08-12 22:53" user="jdooley" host="Jamess-iMac.local"/>
   </section>
   <section name="files">
     <file name="consts.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="1" panelstate=""/>
-      <fingerprint md5="4700590b517fcf113502e70346e7c31e"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="bfadc8737c044aaea2ad486e1fffbc2d"/>
     </file>
     <file name="setup_ui.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="2" panelstate=""/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="35829f153c9d68b8045d07e6054f83ae"/>
     </file>
-    <file name="main.pb">
+    <file name="main_panel.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="1" panelstate=""/>
+      <fingerprint md5="15d02690d3d24f54c874853aa015b58f"/>
+    </file>
+    <file name="splash-panel.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
-      <fingerprint md5="ecc00f7c7d7feaaf3beec41114ca0d41"/>
+      <fingerprint md5="6c2f93f760acd0633130bd407f6b0876"/>
+    </file>
+    <file name="about_ui.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="4f59172b9259155738f2d5151bdeda6a"/>
+    </file>
+    <file name="main.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="2" panelstate=""/>
+      <fingerprint md5="07658e1003e7981198a89e20c88d9f21"/>
     </file>
     <file name="setup.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="519fcfd13be4fb49b099fa2b044149c9"/>
-    </file>
-    <file name="about_ui.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="5" panelstate=""/>
-      <fingerprint md5="4f59172b9259155738f2d5151bdeda6a"/>
     </file>
     <file name="menubar.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
@@ -41,10 +49,6 @@
     <file name="navigation_panel.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="c9b79298e87402ff2a5daeeb8b9a54c0"/>
-    </file>
-    <file name="main_panel.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="3" panelstate=""/>
-      <fingerprint md5="615ebc3a6d613ca2225433de13278299"/>
     </file>
     <file name="file_utils.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
@@ -66,9 +70,13 @@
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="c6cf1b2b8da4d97b9b6a10d149082e9d"/>
     </file>
-    <file name="splash-panel.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="4" panelstate=""/>
-      <fingerprint md5="6c2f93f760acd0633130bd407f6b0876"/>
+    <file name="download_panel_ui.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="b2bbf0cf28ccd773fe899c98b9bae01c"/>
+    </file>
+    <file name="import_panel_ui.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="3" panelstate=""/>
+      <fingerprint md5="ec9b00a8fbed1cc8fa71b5b9749dd335"/>
     </file>
   </section>
   <section name="targets">

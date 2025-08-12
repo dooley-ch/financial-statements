@@ -81,14 +81,23 @@ DeclareModule Consts
   
   Define.l WND_Background = RGB($FF, $57, $22)
   
+  ;-------- Panel Values --------
+  #PANEL_TITLE_BAR_HEIGHT = 36
+  #PANEL_TITLE_BAR_IMAGE_HEIGHT = 50
+  #PANEL_TITLE_BAR_IMAGE_WIDTH = 50
+  #PANEL_TITLE_BAR_TEXT_HEIGHT = 20
+  #PANEL_DEFAULT_GADGET_PADDING = 5
+  
+  Define.l PANEL_TITLE_BAR_Background = NAV_PANEL_Item_Selected_Background
+  Define.l PANEL_TITLE_Color = RGB($FF, $FF, $FF)
 EndDeclareModule
 
 Module Consts
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 77
-; FirstLine = 44
+; CursorPosition = 87
+; FirstLine = 59
 ; Folding = -
 ; EnableXP
 ; DPIAware
