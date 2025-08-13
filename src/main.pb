@@ -26,6 +26,8 @@ XIncludeFile "about_ui.pbi"
 XIncludeFile "splash-panel.pbi"
 XIncludeFile "download_panel_ui.pbi"
 XIncludeFile "import_panel_ui.pbi"
+XIncludeFile "build_panel_ui.pbi"
+XIncludeFile "publish_panel_ui.pbi"
 XIncludeFile "main_panel.pbi"
 
 UseModule Consts
@@ -195,13 +197,13 @@ If IsWindow(hMainWindowId)
     
     Select event
       Case #APP_EVENT_Download
-        Debug "Download Action"
+        SelectDownloadPanel()
       Case #APP_EVENT_Import
-        Debug "Import Action"
+        SelectImportPanel()
       Case #APP_EVENT_Build
-        Debug "Build Action"
+        SelectBuildPanel()
       Case #APP_EVENT_Publish
-        Debug "Publish Action"
+        SelectPublishPanel()
       Case #APP_EVENT_Setup
         OnOpenSetupDialog()
       Case #APP_EVENT_Manual
@@ -277,8 +279,8 @@ DataSection
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 27
-; FirstLine = 20
+; CursorPosition = 205
+; FirstLine = 188
 ; Folding = --
 ; EnableXP
 ; DPIAware
