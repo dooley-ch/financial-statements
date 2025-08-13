@@ -34,7 +34,7 @@ Module BuildPanelUI
     Protected.i panelWidth, panelHeght
     
     panelHeght = GadgetHeight(hPanel, #PB_Gadget_ActualSize)
-    panelWidth = GadgetWidth(hPanel, #PB_Gadget_ActualSize)
+    panelWidth = GadgetWidth(hPanel, #PB_Gadget_ActualSize) - #PANEL_ACTION_BAR_WIDTH
     
     ResizeGadget(hTitleBar, 0, 0, panelWidth, #PANEL_TITLE_BAR_HEIGHT)
   EndProcedure
@@ -121,7 +121,8 @@ Module BuildPanelUI
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 63
+; CursorPosition = 36
+; FirstLine = 31
 ; Folding = --
 ; EnableXP
 ; DPIAware

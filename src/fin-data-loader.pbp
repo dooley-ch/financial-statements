@@ -7,20 +7,32 @@
   <section name="data">
     <explorer view="" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2025-08-12 22:53" user="jdooley" host="Jamess-iMac.local"/>
+    <lastopen date="2025-08-13 19:03" user="jdooley" host="Jamess-iMac.local"/>
   </section>
   <section name="files">
+    <file name="main_panel.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="1" panelstate=""/>
+      <fingerprint md5="5d015a980b9e319f1bb7b24330081648"/>
+    </file>
+    <file name="main.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="2" panelstate=""/>
+      <fingerprint md5="64f13e274a0cd2b01b00fa90c9d3b905"/>
+    </file>
+    <file name="download_panel_ui.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="3" panelstate=""/>
+      <fingerprint md5="9a1e3b0b6e7916abe7899b808b265cd8"/>
+    </file>
+    <file name="import_panel_ui.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
+      <fingerprint md5="2a8cb6d71af2c6d08ea59fecf08f7f3a"/>
+    </file>
     <file name="consts.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
-      <fingerprint md5="bfadc8737c044aaea2ad486e1fffbc2d"/>
+      <fingerprint md5="37a38be943934724c9062bed1b9a23d3"/>
     </file>
     <file name="setup_ui.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="35829f153c9d68b8045d07e6054f83ae"/>
-    </file>
-    <file name="main_panel.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="1" panelstate=""/>
-      <fingerprint md5="15d02690d3d24f54c874853aa015b58f"/>
     </file>
     <file name="splash-panel.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
@@ -29,10 +41,6 @@
     <file name="about_ui.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="4f59172b9259155738f2d5151bdeda6a"/>
-    </file>
-    <file name="main.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="2" panelstate=""/>
-      <fingerprint md5="07658e1003e7981198a89e20c88d9f21"/>
     </file>
     <file name="setup.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
@@ -69,14 +77,6 @@
     <file name="messageboxes.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
       <fingerprint md5="c6cf1b2b8da4d97b9b6a10d149082e9d"/>
-    </file>
-    <file name="download_panel_ui.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" sortindex="999" panelstate=""/>
-      <fingerprint md5="b2bbf0cf28ccd773fe899c98b9bae01c"/>
-    </file>
-    <file name="import_panel_ui.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" sortindex="3" panelstate=""/>
-      <fingerprint md5="ec9b00a8fbed1cc8fa71b5b9749dd335"/>
     </file>
   </section>
   <section name="targets">

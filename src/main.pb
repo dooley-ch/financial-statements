@@ -279,8 +279,8 @@ DataSection
 EndDataSection
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 205
-; FirstLine = 188
+; CursorPosition = 24
+; FirstLine = 21
 ; Folding = --
 ; EnableXP
 ; DPIAware

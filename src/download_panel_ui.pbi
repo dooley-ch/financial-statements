@@ -19,6 +19,8 @@ EndDeclareModule
 Module DownloadPanelUI
   EnableExplicit
   
+  UsePNGImageDecoder()
+  
   UseModule Consts
   
   #TITLE_IMAGE_X = #PANEL_DEFAULT_GADGET_PADDING * 2 
@@ -27,16 +29,74 @@ Module DownloadPanelUI
   #TITLE_LABEL_Y = #TITLE_IMAGE_Y 
   
   Define lastError$ = ""
-  Define.i hMainWindow, hPanel, hTitleBar, hTitleImage, hTitleLabel
+  Define.i hMainWindow, hPanel, hTitleBar, hTitleImage, hTitleLabel, hActionBar
+  
+  Define.i hLogButton, hRefreshButton, hResetButton, hRunButton, hStopButton
+  Define.i hDisabledLogIcon, hDisabledRefreshIcon, hDisabledResetIcon, hDisabledRunIcon, hDisabledStopIcon
+  Define.i hEnabledLogIcon, hEnabledRefreshIcon, hEnabledResetIcon, hEnabledRunIcon, hEnabledStopIcon
+  Define.i hRunningLogIcon, hRunningRefreshIcon, hRunningResetIcon, hRunningRunIcon, hRunningStopIcon  
+  
+  ;---------- Action Bar Event Handlers ----------
+  
+  Procedure OnLogButtonClick()
+    Shared hLogButton
+    Protected enabled.b = GetGadgetData(hLogButton)
+    
+    If Not enabled
+      ProcedureReturn
+    EndIf
+    
+    Debug "Log Button Clicked"
+  EndProcedure
+  
+  Procedure OnRefreshButtonClick()
+    Shared hRefreshButton
+    Protected enabled.b = GetGadgetData(hRefreshButton)
+    
+    If Not enabled
+      ProcedureReturn
+    EndIf
+    
+    Debug "Refresh Button Clicked"
+  EndProcedure
+  
+  Procedure OnResetButtonClick()
+    Shared hResetButton
+    Protected enabled.b = GetGadgetData(hResetButton)
+    
+    If Not enabled
+      ProcedureReturn
+    EndIf
+    
+    Debug "Reset Button Clicked"
+  EndProcedure
+  
+  Procedure OnRunButtonClick()
+    Debug "Run Button Clicked"
+  EndProcedure
+  
+  Procedure OnStopButtonClick()
+    Shared hStopButton
+    Protected enabled.b = GetGadgetData(hStopButton)
+    
+    If Not enabled
+      ProcedureReturn
+    EndIf
+    
+    Debug "Stop Button Clicked"
+  EndProcedure
+  
+  ;---------- Event Handlers ----------
   
   Procedure OnResizePanel()
-    Shared hPanel, hTitleBar
+    Shared hPanel, hTitleBar, hActionBar
     Protected.i panelWidth, panelHeght
     
     panelHeght = GadgetHeight(hPanel, #PB_Gadget_ActualSize)
-    panelWidth = GadgetWidth(hPanel, #PB_Gadget_ActualSize)
+    panelWidth = GadgetWidth(hPanel, #PB_Gadget_ActualSize) - #PANEL_ACTION_BAR_WIDTH
     
     ResizeGadget(hTitleBar, 0, 0, panelWidth, #PANEL_TITLE_BAR_HEIGHT)
+    ResizeGadget(hActionBar, panelWidth, 0, #PB_Ignore, #PB_Ignore)
   EndProcedure
   
   Procedure OnTitleBarResize()
@@ -51,7 +111,7 @@ Module DownloadPanelUI
   Procedure CreateTitleBar()
     Shared hTitleBar, hTitleImage, hTitleLabel, lastError$
     Protected hImage.i, hFont.i
-    
+
     lastError$ = #Empty$
     
     hTitleBar = ContainerGadget(#PB_Any, 5, 5, 300, #PANEL_TITLE_BAR_HEIGHT, #PB_Container_BorderLess)
@@ -72,6 +132,50 @@ Module DownloadPanelUI
     EndIf
   EndProcedure
   
+  Procedure CreateActionBar()
+    #BUTTON_SPACER = 30
+    
+    Shared hActionBar, 
+           hLogButton, hRefreshButton, hResetButton, hRunButton, hStopButton,
+           hDisabledLogIcon, hDisabledRefreshIcon, hDisabledResetIcon, hDisabledRunIcon, hDisabledStopIcon,
+           hEnabledLogIcon, hEnabledRefreshIcon, hEnabledResetIcon, hEnabledRunIcon, hEnabledStopIcon
+    
+    Protected.i imageY = #PANEL_DEFAULT_GADGET_PADDING, imageX = #PANEL_DEFAULT_GADGET_PADDING
+    
+    hActionBar = ContainerGadget(#PB_Any, 100, 100, #PANEL_ACTION_BAR_WIDTH, #PANEL_TITLE_BAR_HEIGHT, #PB_Container_BorderLess)
+    If IsGadget(hActionBar)
+      hLogButton = ImageGadget(#PB_Any, imageX, imageY, #PANEL_TITLE_BAR_IMAGE_WIDTH, #PANEL_TITLE_BAR_IMAGE_HEIGHT, ImageID(hEnabledRunIcon))
+      BindGadgetEvent(hLogButton, @OnRunButtonClick(), #PB_EventType_LeftClick)
+      SetGadgetData(hLogButton, #True)
+      
+      imageX = imageX + #BUTTON_SPACER
+      hStopButton = ImageGadget(#PB_Any, imageX, imageY, #PANEL_TITLE_BAR_IMAGE_WIDTH, #PANEL_TITLE_BAR_IMAGE_HEIGHT, ImageID(hDisabledStopIcon))
+      BindGadgetEvent(hStopButton, @OnStopButtonClick(), #PB_EventType_LeftClick)
+      DisableGadget(hStopButton, #True)
+      SetGadgetData(hStopButton, #False)
+      
+      imageX = imageX + #BUTTON_SPACER
+      hResetButton = ImageGadget(#PB_Any, imageX, imageY, #PANEL_TITLE_BAR_IMAGE_WIDTH, #PANEL_TITLE_BAR_IMAGE_HEIGHT, ImageID(hDisabledResetIcon))
+      BindGadgetEvent(hResetButton, @OnResetButtonClick(), #PB_EventType_LeftClick)
+      DisableGadget(hResetButton, #True)
+      SetGadgetData(hResetButton, #False)
+      
+      imageX = imageX + #BUTTON_SPACER
+      hRefreshButton = ImageGadget(#PB_Any, imageX, imageY, #PANEL_TITLE_BAR_IMAGE_WIDTH, #PANEL_TITLE_BAR_IMAGE_HEIGHT, ImageID(hEnabledRefreshIcon))
+      BindGadgetEvent(hRefreshButton, @OnRefreshButtonClick(), #PB_EventType_LeftClick)
+      SetGadgetData(hRefreshButton, #True)
+      
+      imageX = imageX + #BUTTON_SPACER
+      hLogButton = ImageGadget(#PB_Any, imageX, imageY, #PANEL_TITLE_BAR_IMAGE_WIDTH, #PANEL_TITLE_BAR_IMAGE_HEIGHT, ImageID(hEnabledLogIcon))
+      BindGadgetEvent(hLogButton, @OnLogButtonClick(), #PB_EventType_LeftClick)
+      SetGadgetData(hLogButton, #True)
+      
+      CloseGadgetList()
+      
+      SetGadgetColor(hActionBar, #PB_Gadget_BackColor, PANEL_TITLE_BAR_Background)
+    EndIf
+  EndProcedure
+  
   ;┌───────────────────────────────────────────────────────────────────────────────────────────────
   ;│     Public     
   ;└───────────────────────────────────────────────────────────────────────────────────────────────
@@ -89,6 +193,10 @@ Module DownloadPanelUI
   ;
   Procedure.i CreateDownloadPanel(hWindow.i) 
     Shared hMainWindow, hPanel, lastError$
+    Shared hDisabledLogIcon, hDisabledRefreshIcon, hDisabledResetIcon, hDisabledRunIcon, hDisabledStopIcon
+    Shared hEnabledLogIcon, hEnabledRefreshIcon, hEnabledResetIcon, hEnabledRunIcon, hEnabledStopIcon
+    Shared hRunningLogIcon, hRunningRefreshIcon, hRunningResetIcon, hRunningRunIcon, hRunningStopIcon
+    
     Protected hImage.i
     
     lastError$ = #Empty$
@@ -96,9 +204,28 @@ Module DownloadPanelUI
     If IsWindow(hWindow)
       hMainWindow = hWindow
       
+      hDisabledLogIcon = CatchImage(#PB_Any, ?DisabledLogIcon)
+      hDisabledRefreshIcon = CatchImage(#PB_Any, ?DisabledRefreshIcon)
+      hDisabledResetIcon = CatchImage(#PB_Any, ?DisabledResetIcon)
+      hDisabledRunIcon = CatchImage(#PB_Any, ?DisabledRunIcon)
+      hDisabledStopIcon = CatchImage(#PB_Any, ?DisabledStopIcon)
+      
+      hEnabledLogIcon = CatchImage(#PB_Any, ?EnabledLogIcon)
+      hEnabledRefreshIcon = CatchImage(#PB_Any, ?EnabledRefreshIcon)
+      hEnabledResetIcon = CatchImage(#PB_Any, ?EnabledResetIcon)
+      hEnabledRunIcon = CatchImage(#PB_Any, ?EnabledRunIcon)
+      hEnabledStopIcon = CatchImage(#PB_Any, ?EnabledStopIcon)
+      
+      hRunningLogIcon = CatchImage(#PB_Any, ?RunningLogIcon)
+      hRunningRefreshIcon = CatchImage(#PB_Any, ?RunningRefreshIcon)
+      hRunningResetIcon = CatchImage(#PB_Any, ?RunningResetIcon)
+      hRunningRunIcon = CatchImage(#PB_Any, ?RunningRunIcon)
+      hRunningStopIcon = CatchImage(#PB_Any, ?RunningStopIcon)
+      
       hPanel = ContainerGadget(#PB_Any, 10, 10, 300, 300, #PB_Container_BorderLess)
       If IsGadget(hPanel)
         CreateTitleBar()
+        CreateActionBar()
         CloseGadgetList()
         
         BindGadgetEvent(hPanel, @OnResizePanel(), #PB_EventType_Resize)
@@ -117,12 +244,57 @@ Module DownloadPanelUI
   DataSection
     LogoImage:
     IncludeBinary #PB_Compiler_FilePath + "res/panels/download@48px.png"
-  EndDataSection  
+    
+    DisabledLogIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/disabled/log@48px.png"  
+    
+    DisabledRefreshIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/disabled/refresh@48px.png"
+    
+    DisabledResetIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/disabled/reset@48px.png" 
+    
+    DisabledRunIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/disabled/run@48px.png" 
+    
+    DisabledStopIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/disabled/Stop@48px.png" 
+    
+    EnabledLogIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/enabled/log@48px.png"  
+    
+    EnabledRefreshIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/enabled/refresh@48px.png"
+    
+    EnabledResetIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/enabled/reset@48px.png" 
+    
+    EnabledRunIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/enabled/run@48px.png" 
+    
+    EnabledStopIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/enabled/Stop@48px.png" 
+    
+    RunningLogIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/running/log@48px.png"  
+    
+    RunningRefreshIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/running/refresh@48px.png"
+    
+    RunningResetIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/running/reset@48px.png" 
+    
+    RunningRunIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/running/run@48px.png" 
+    
+    RunningStopIcon:
+    IncludeBinary #PB_Compiler_FilePath + "res/action-panel/running/Stop@48px.png"    
+  EndDataSection
 EndModule
 ; IDE Options = PureBasic 6.21 - C Backend (MacOS X - arm64)
 ; ExecutableFormat = Console
-; CursorPosition = 111
-; FirstLine = 85
-; Folding = --
+; CursorPosition = 86
+; FirstLine = 80
+; Folding = ---
 ; EnableXP
 ; DPIAware
